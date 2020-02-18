@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mysql_prod:
+    image: mysql:5.7
+    environment:
+      - MYSQL_USER=${MYSQL_USER_PROD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD_PROD}
+    ports:
+      - "${MYSQL_PORT_PROD}:3306"
+    volumes:
+      - ./mysql_prod/:/var/lib/mysql
+    restart: always
+  mysql_stg:
+    image: mysql:5.7
+    environment:
+      - MYSQL_USER=${MYSQL_USER_STG}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD_STG}
+    ports:
+      - "${MYSQL_PORT_STG}:3306"
+    volumes:
+      - ./mysql_stg/:/var/lib/mysql
+    restart: always
